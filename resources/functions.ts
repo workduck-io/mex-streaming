@@ -26,6 +26,13 @@ const functions: AWS['functions'] = {
             },
         ],
     },
+    streamingFunction: {
+        handler: 'src/lambdas/http/handler.handleRequest',
+        url: {
+            cors: true,
+        }
+    }
+
 }
 
 export default functions;

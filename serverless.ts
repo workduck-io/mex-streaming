@@ -21,6 +21,16 @@ const serverlessConfiguration: AWS = {
     custom: {
         myStage: '${opt:stage, self:provider.stage}',
     },
+    resources: {
+        Resources: {
+            StreamingFunctionLambdaFunctionUrl: { // find "Lambda::Url" resource : https://github.com/serverless/serverless/issues/11906#issuecomment-1565686984
+                Type: 'AWS::Lambda::Url',
+                Properties: {
+                    InvokeMode: "RESPONSE_STREAM"
+                }
+            }
+        }
+    }
 };
 
 module.exports = serverlessConfiguration;
