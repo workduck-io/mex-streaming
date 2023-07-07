@@ -5,22 +5,40 @@
             "ESNext"
         ],
         "moduleResolution": "node",
-        //"noUnusedLocals": true,
-        //"noUnusedParameters": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
         "removeComments": true,
         "sourceMap": true,
         "target": "ES2020",
         "outDir": "lib",
-        // "paths": {
-        //     "cheerio": [
-        //         "./node_modules/cheerio/lib/index.d.ts"
-        //     ]
-        // }
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true
     },
+    // "compilerOptions": {
+    //     "lib": [
+    //         "ESNext"
+    //     ],
+    //     "moduleResolution": "node",
+    //     "esModuleInterop": true,
+    //     "allowSyntheticDefaultImports": true,
+    //     //"noUnusedLocals": true,
+    //     //"noUnusedParameters": true,
+    //     "removeComments": true,
+    //     "sourceMap": true,
+    //     "target": "ESNext",
+    //     "outDir": "lib",
+    //     // "paths": {
+    //     //     "cheerio": [
+    //     //         "./node_modules/cheerio/lib/index.d.ts"
+    //     //     ]
+    //     // }
+    // },
     "include": [
         "src/**/*.ts",
         "infra/**/*.ts",
-        "serverless.ts"
+        "serverless.ts",
+        "src/test/lambda.ts"
     ],
     "exclude": [
         "node_modules/**/*",
