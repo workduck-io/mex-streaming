@@ -38,7 +38,9 @@
         "src/**/*.ts",
         "infra/**/*.ts",
         "serverless.ts",
-        "src/test/lambda.ts"
+        "src/test/lambda.ts",
+        "src/test/csv/loader.mjs",
+        "src/utils/flowiseUtils.js"
     ],
     "exclude": [
         "node_modules/**/*",

@@ -1,7 +1,7 @@
 {
-  "name": "mex-websockets",
+  "name": "mex-streaming",
   "version": "1.0.0",
-  "description": "A service for all mex' websockets related needs",
+  "description": "A service for all mex' streaming related needs",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -28,10 +28,14 @@
     "compute-cosine-similarity": "^1.0.0",
     "cosine-similarity": "^1.0.1",
     "csv-parser": "^3.0.0",
-    "esbuild": "^0.18.10",
+    "d3-dsv": "^2.0.0",
+    "esbuild": "^0.17.19",
     "jwt-decode": "^3.1.2",
     "lambda-stream": "^0.3.0",
     "langchain": "^0.0.81",
-    "nanoid": "^3.3.4"
+    "nanoid": "^3.3.4",
+    "peggy": "^3.0.2",
+    "react": "^18.2.0",
+    "socket.io-client": "^4.7.1"
   }
 }
