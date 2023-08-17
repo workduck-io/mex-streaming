@@ -17,7 +17,9 @@ function handleStatusCode(statusCode: number, body: string) {
 }
 
 // Lambda invocation function
-async function getDetails(requestBody: string, workspaceId: string, authorizationToken: string): Promise<Details> {
+async function getDetails(requestBody: string | null, workspaceId: string, authorizationToken: string): Promise<Details> {
+    const parsedRequestBody = requestBody ? JSON.parse(requestBody) : null;
+
     const params = {
         FunctionName: FUNCTION_NAME,
         InvocationType: "RequestResponse",
@@ -27,7 +29,7 @@ async function getDetails(requestBody: string, workspaceId: string, authorizatio
                 'mex-workspace-id': workspaceId,
                 authorization: authorizationToken
             },
-            body: JSON.parse(requestBody)
+            body: parsedRequestBody
         }),
     };
 

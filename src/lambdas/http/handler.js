@@ -31,20 +31,49 @@ exports.handleRequest = awslambda.streamifyResponse(async function (event, respo
         const httpResponseMetadata = {
             status: 200,
             headers: {
-                'Content-Type': 'text/html',
-                "Access-Control-Allow-Origin": "*", // Required for CORS support to work
+                'Content-Type': 'application/json',
+                //"Access-Control-Allow-Origin": "http://localhost:3333", // Required for CORS support to work
                 "Access-Control-Allow-Credentials": true, // Required for cookies, authorization headers with HTTPS
-            },
+                "Access-Control-Allow-Methods": "PUT, GET, HEAD, POST, DELETE, OPTIONS"
+            }
         }
+
 
         responseStream = awslambda.HttpResponseStream.from(responseStream, httpResponseMetadata)
         const workspaceId = event.headers[HEADER_WORKSPACE_ID];
         const bearerToken = extractToken(event.headers.authorization);
-        await isAuthorized(bearerToken, workspaceId);
+        //await isAuthorized(bearerToken, workspaceId);
+
+        try {
+            await isAuthorized(bearerToken, workspaceId);
+        } catch (error) {
+
+            httpResponseMetadata = {
+                status: 401,
+                headers: {
+                    'Content-Type': 'application/json',
+                    "Access-Control-Allow-Credentials": true, // Required for cookies, authorization headers with HTTPS
+                    "Access-Control-Allow-Methods": "PUT, GET, HEAD, POST, DELETE, OPTIONS"
+                    //"Access-Control-Allow-Origin": "http://localhost:3333", // Required for CORS support to work
+                }
+            }
+
+            body = JSON.stringify({
+                message: "Unauthorized",
+            })
+
+            responseStream = awslambda.HttpResponseStream.from(responseStream, httpResponseMetadata)
+            responseStream.write(body)
+            responseStream.end()
+            return;
+
+
+        };
+
 
         const requestType = JSON.parse(event.body).type
         console.log("Event.Body.Type parsed = " + requestType)
-        if (requestType === 'agent') {
+        if (requestType === 'agent') { // DevFlows integration
             // TODO : check for existence of question field in the body.
             // TODO : add support for multiple intents.
             invokeAgent(event.body, responseStream)

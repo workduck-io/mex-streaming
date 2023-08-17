@@ -7,6 +7,13 @@ const functions: AWS['functions'] = {
             cors: true,
         },
         timeout: 20
+    },
+    moderator: {
+        handler: 'src/lambdas/moderator/handler.handleRequest',
+        url: {
+            cors: true,
+        },
+        timeout: 120
     }
 }
 
