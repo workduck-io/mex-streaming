@@ -5,3 +5,4 @@ node_modules
 /src/test/*
 /src/test/openai_stream.ts
 data.json
+data1.json

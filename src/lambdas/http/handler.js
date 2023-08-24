@@ -1,6 +1,6 @@
 import { isAuthorized } from "../../utils/authorizeUtils";
 import { extractToken } from "../../utils/tokenUtils";
-import { getMessagesInLangchainFormat } from "../../utils/messageUtils";
+import { getMessagesInLangchainFormat } from "../../utils/messageFormatterUtils";
 import { invokeAgent } from "../../utils/flowiseUtils";
 import { getDetails, updateTokenUsage } from "../../utils/lambdaUtils";
 import { ChatOpenAI } from "langchain/chat_models/openai";
@@ -28,7 +28,7 @@ async function initiateChat(apiKey, messages, responseStream) {
 exports.handleRequest = awslambda.streamifyResponse(async function (event, responseStream, context) {
     try {
         console.log(context)
-        const httpResponseMetadata = {
+        let httpResponseMetadata = {
             status: 200,
             headers: {
                 'Content-Type': 'application/json',

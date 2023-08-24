@@ -33,8 +33,12 @@ function isUserPartOfWorkspace(token: string, userWorkspaceID: string): boolean 
 async function isAuthorized(bearerToken: string, workspaceId: string): Promise<boolean> {
     const isPartOfWorkspace = isUserPartOfWorkspace(bearerToken, workspaceId);
     const isTokenStillActive = isTokenActive(bearerToken);
+    console.log("ws check : " + isPartOfWorkspace)
+    console.log("active check : " + isTokenStillActive)
     const isAuth = await Promise.all([isPartOfWorkspace, isTokenStillActive])
         .then(([workspace, active]) => workspace && active);
+
+    console.log("auth check : " + isAuth)
 
     if (!isAuth) throw new Error('Unauthorized');
     else return isAuth
