@@ -6,3 +6,4 @@ node_modules
 /src/test/openai_stream.ts
 data.json
 data1.json
+embeddings.csv
