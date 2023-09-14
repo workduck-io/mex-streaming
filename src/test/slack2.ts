@@ -53,7 +53,7 @@ async function fetchMatchingThreads(): Promise<void> {
 
         console.log(top3Messages);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     });
 }

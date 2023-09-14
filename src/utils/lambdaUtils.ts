@@ -71,7 +71,7 @@ async function updateTokenUsage(
   const lambdaClient = new Lambda({ region: REGION });
   try {
     const response = await lambdaClient.send(new InvokeCommand(params));
-    console.log(response);
+    // console.log(response);
   } catch (error) {
     throw new Error(error.message);
   }

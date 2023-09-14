@@ -24,7 +24,7 @@ async function generateResponse(
     );
     return await parser(llmResponse);
   } catch (error) {
-    console.log('Error in createMessage fn : ' + error);
+    console.error('Error in createMessage fn : ' + error);
     throw error;
   }
 }
@@ -62,8 +62,8 @@ export const handleCallAnalysis = async (
     workspaceId,
     bearerToken
   );
-  console.log('API KEY : ' + apiKey);
-  console.log('isSystemToken : ' + isSystemToken);
+  // console.log('API KEY : ' + apiKey);
+  // console.log('isSystemToken : ' + isSystemToken);
   const response = await generateResponse(
     apiKey,
     body,

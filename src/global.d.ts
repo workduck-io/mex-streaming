@@ -1,4 +1,4 @@
-import { APIGatewayEvent, Context, Handler } from 'aws-lambda';
+import { APIGatewayProxyEventV2, Context, Handler } from 'aws-lambda';
 import { Writable } from 'stream';
 
 declare global {
@@ -8,7 +8,7 @@ declare global {
     }
 
     export type StreamifyHandler = (
-      event: APIGatewayEvent,
+      event: APIGatewayProxyEventV2,
       responseStream: Writable,
       context: Context
     ) => Promise<any>;

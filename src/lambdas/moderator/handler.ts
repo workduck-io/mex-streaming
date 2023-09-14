@@ -9,14 +9,8 @@ import { extractToken } from '../../utils/tokenUtils';
 const HEADER_WORKSPACE_ID = 'mex-workspace-id';
 
 export const handleRequest = async event => {
-  console.log('Event : ' + JSON.stringify(event));
-
   try {
     const workspaceId = event.headers[HEADER_WORKSPACE_ID];
-    console.log('WorkspaceID : ' + workspaceId);
-
-    console.log('token1 : ' + event.headers.authorization);
-    console.log('token2 : ' + event.headers['authorization']);
     const bearerToken = extractToken(event.headers.authorization);
 
     await isAuthorized(bearerToken, workspaceId);

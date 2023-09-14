@@ -32,7 +32,6 @@ export const handleRequest = awslambda.streamifyResponse(async function (
   context
 ) {
   try {
-    console.log(context);
     let httpResponseMetadata = {
       status: 200,
       headers: {
@@ -79,7 +78,7 @@ export const handleRequest = awslambda.streamifyResponse(async function (
     }
 
     const requestType = JSON.parse(event.body).type;
-    console.log('Event.Body.Type parsed = ' + requestType);
+    // console.log('Event.Body.Type parsed = ' + requestType);
     if (requestType === 'agent') {
       // DevFlows integration
       // TODO : check for existence of question field in the body.
@@ -100,7 +99,7 @@ export const handleRequest = awslambda.streamifyResponse(async function (
       }
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
 
     //responseStream.write(`${error}`);
     responseStream.end();
