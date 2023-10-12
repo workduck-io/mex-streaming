@@ -10,6 +10,9 @@
             ],
             "@resources/*": [
                 "src/resources/*"
+            ],
+            "@test/*": [
+                "src/test/*"
             ]
         }
     }

@@ -2,3 +2,8 @@ package-lock.json
 node_modules
 .env
 .serverless
+/src/test/*
+/src/test/openai_stream.ts
+data.json
+data1.json
+embeddings.csv
